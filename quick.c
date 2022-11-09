@@ -1,52 +1,51 @@
 #include <stdio.h>
 
-void troca(int *a, int *b)
+void swap(int *a, int *b)
 {
     int t = *a;
     *a = *b;
     *b = t;
 }
 
-int partition(int arr[], int low, int high) // acha a posicao da partition
+int partition(int arr[], int start, int end) // acha a posicao da partição
 {
-    // seleciona o final do vetor como pivo
-    int pivo = arr[high];
+    // seleciona o final do vetor como pivô
+    int pivot = arr[end];
 
     // ponteiro para um elemento maior
-    int i = (low-1);
+    int i = (start-1);
 
-    // caminha por cada elemento do array e compara com o pivo
-    for (int j=low; j<high; j++)
+    // caminha por cada elemento do array e compara com o pivô
+    for (int j=start; j<end; j++)
     {
-        if (arr[j]<=pivo)
-        {
-            // se achar um elemento menor que o pivo, troca ele com o elemento maior em i
+        if (arr[j]<=pivot)
+        { // se achar um elemento menor que o pivô, troca ele com o elemento maior em i
             i++;
-            troca(&arr[i], &arr[j]);
+            swap(&arr[i], &arr[j]);
         }
     }
 
-    // troca o pivo com o elemento em i
-    troca(&arr[i+1], &arr[high]);
+    // troca o pivô com o elemento em i
+    swap(&arr[i+1], &arr[end]);
 
     return (i+1);
 }
 
-void quick_sort(int arr[], int low, int high)
+void quick_sort(int arr[], int start, int end)
 {
-    if (low<high)
+    if (start<end)
     {
-        // encontra o pivo onde os elementos menores estao à esquerda e maiores à direita
-        int pivo = partition(arr, low, high);
+        // encontra o pivô onde os elementos menores estao à esquerda e maiores à direita
+        int pivot = partition(arr, start, end); // separa os dados em 2 partições
 
         // ordena para a esquerda
-        quick_sort(arr, low, pivo-1);
+        quick_sort(arr, start, pivot-1);
         // ordena para a direita
-        quick_sort(arr, pivo+1, high);
+        quick_sort(arr, pivot+1, end);
     }
 }
 
-int main(void)
+int main()
 {
     int arr[10], size = sizeof(arr)/sizeof(arr[10]);
 
