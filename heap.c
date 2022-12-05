@@ -1,6 +1,4 @@
 #include <stdio.h>
-// https://www.youtube.com/watch?v=zSYOMJ1E52A&ab_channel=Programa%C3%A7%C3%A3oDescomplicada
-// video parou no 5:01
 
 void new_heap(int *arr, int i, int f)
 {
@@ -56,5 +54,30 @@ void heap_sort(int *arr, int N)
 
 int main()
 {
+    int arr[5], size = sizeof(arr)/sizeof(arr[10]);
+
+    printf("digite 5 números inteiros:\n");
+
+    for (int i=0; i<size; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    printf("-------------------------\n");
+
+    printf("unsorted array:\n");
+    for (int i=0; i < size; i++)
+    {
+        printf("arr[%d] = %d\n", i, arr[i]);
+    }
+    printf("-------------------------\n");
+
+    heap_sort(arr, size);
+
+    printf("sorted array:\n");
+    for (int i=0; i<size; i++)
+    {
+        printf("arr[%d] = %d\n", i, arr[i]);
+    }
+    
     return 0;
 }
